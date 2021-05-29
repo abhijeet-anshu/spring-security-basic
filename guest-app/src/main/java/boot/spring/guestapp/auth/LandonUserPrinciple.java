@@ -1,23 +1,30 @@
 package boot.spring.guestapp.auth;
 
+import com.google.common.collect.ImmutableSet;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.Collections;
+import java.util.*;
 
 public class LandonUserPrinciple implements UserDetails {
     private User user;
+    private List<AuthGroup> authGroups;
 
-    public LandonUserPrinciple(User user) {
+    public LandonUserPrinciple(User user, List<AuthGroup> authGroups) {
         super();
         this.user = user;
+        this.authGroups = authGroups;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        if(null==authGroups)
+            return Collections.emptySet();
+        ImmutableSet.Builder<GrantedAuthority> setBuilder = new ImmutableSet.Builder<>();
+        authGroups.forEach(authGroup ->
+                setBuilder.add(new SimpleGrantedAuthority(authGroup.getAuthGroup())));
+        return setBuilder.build();
     }
 
     @Override
