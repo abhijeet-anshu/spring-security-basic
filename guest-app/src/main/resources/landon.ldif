@@ -39,13 +39,13 @@ userPassword: {SHA}iEPX+SQWIR3p67lj/0zigSWTKHg=
 dn: cn=admin,ou=groups,dc=frankmoley,dc=com
 objectclass: top
 objectclass: groupOfUniqueNames
-cn: admins
+cn: admin
 uniqueMember: uid=fpmoles,ou=people,dc=frankmoley,dc=com
 
 dn: cn=user,ou=groups,dc=frankmoley,dc=com
 objectclass: top
 objectclass: groupOfUniqueNames
-cn: users
+cn: user
 uniqueMember: uid=fpmoles,ou=people,dc=frankmoley,dc=com
 uniqueMember: uid=jdoe,ou=people,dc=frankmoley,dc=com
 
